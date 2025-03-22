@@ -28,6 +28,7 @@ public class OutboxMessageEntity {
 
     private LocalDateTime occurredAt;
 
+    // todo turn into enum
     private String status; // NEW, SENT, FAILED
 
     private LocalDateTime createdAt;
