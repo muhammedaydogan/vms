@@ -1,4 +1,4 @@
-package com.example.vms;
+package com.vm.vending;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
