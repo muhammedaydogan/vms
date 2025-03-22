@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75e79f25-b3e5-4bbe-a57d-aae9d5bd0374" name="Changes" comment="reorganized file structure">
-      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/Money.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/VendingMachine.java" afterDir="false" />
+    <list default="true" id="75e79f25-b3e5-4bbe-a57d-aae9d5bd0374" name="Changes" comment="implementated ddd models and updated structure">
+      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/repository/VendingMachineRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/infrastructure/config/VendingMachineInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/infrastructure/persistence/VendingMachineJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/infrastructure/persistence/VendingMachineRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/infrastructure/persistence/entity/VendingMachineEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/VmsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/VendingMachineServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vms/src/test/java/com/vm/vending/VmsApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/vms/src/test/java/com/vm/vending/VendingMachineServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/Money.java" beforeDir="false" afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/Money.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/VendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/VendingMachine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +106,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1742659662002</updated>
-      <workItem from="1742659663917" duration="2623000" />
+      <workItem from="1742659663917" duration="4889000" />
     </task>
     <task id="LOCAL-00001" summary="turned vms into module">
       <option name="closed" value="true" />
@@ -140,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742661421751</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="implementated ddd models and updated structure">
+      <option name="closed" value="true" />
+      <created>1742663107510</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1742663107510</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +168,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="turned vms into module" />
     <MESSAGE value="reorganized file structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="reorganized file structure" />
+    <MESSAGE value="implementated ddd models and updated structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementated ddd models and updated structure" />
   </component>
 </project>
