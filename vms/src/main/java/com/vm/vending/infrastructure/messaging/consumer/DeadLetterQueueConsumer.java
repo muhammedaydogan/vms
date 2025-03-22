@@ -11,5 +11,6 @@ public class DeadLetterQueueConsumer {
     @RabbitListener(queues = "event.dlq")
     public void handleDeadLetter(String payload) {
         log.warn("DLQ message received: {}", payload);
+        // todo add retry mechanism
     }
 }
