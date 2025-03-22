@@ -36,6 +36,5 @@ public class VendingMachine {
         domainEvents.add(new ProductPurchasedEvent(
                 this.id, user.getId(), product.getId(), LocalDateTime.now()
         ));
-        // todo send to Outbox Table later on.
     }
 }
