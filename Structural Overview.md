@@ -22,3 +22,22 @@
 | Sistemler arası event bus  | Kafka    | Performans + replay + fan-out    
 | Event sourcing / analytics | Kafka    | Data lake mantığı, replay        
 
+## Outbox Pattern
+**Dispatcher**, belirli aralıklarla bu tabloyu tarar ve `status = NEW` olan kayıtları **RabbitMQ**'ya gönderir.
+### 🔄 Event Akışı
+
+```plaintext
+Domain Layer
+   ⬇
+Outbox Table (status = NEW)
+   ⬇
+Dispatcher → RabbitMQ / Kafka
+   ⬇
+Consumer (Event işlenir)
+   ⬇
+ACK Event (örneğin PurchaseConfirmedEvent)
+   ⬇
+Yeni Outbox kaydı
+   ⬇
+Dispatcher → RabbitMQ / Kafka
+```
