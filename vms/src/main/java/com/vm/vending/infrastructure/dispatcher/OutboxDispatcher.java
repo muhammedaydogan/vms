@@ -29,8 +29,7 @@ public class OutboxDispatcher {
             try {
                 eventPublisher.publish(message.getEventType(), message.getPayload());
                 message.setStatus("SENT");
-                // todo Buna bir de Event ACK mantigi ekleyecegiz esasinda yapi ana hatlariyla bitmis olacak
-                //  duruma gore vakit kalirsa saga pattern'e gecilebilir
+                //  todo duruma gore vakit kalirsa saga pattern'e gecilebilir
             } catch (Exception e) {
                 log.error("Failed to publish outbox message with id: {}", message.getId(), e);
                 message.setStatus("FAILED");
