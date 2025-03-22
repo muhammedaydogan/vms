@@ -2,9 +2,13 @@ package com.vm.vending.application.service;
 
 import com.vm.vending.application.command.PurchaseProductCommand;
 import com.vm.vending.domain.event.DomainEvent;
-import com.vm.vending.domain.model.*;
+import com.vm.vending.domain.model.Product;
+import com.vm.vending.domain.model.User;
+import com.vm.vending.domain.model.VendingMachine;
 import com.vm.vending.domain.repository.UserRepository;
 import com.vm.vending.domain.repository.VendingMachineRepository;
+import com.vm.vending.infrastructure.outbox.mapper.OutboxMapper;
+import com.vm.vending.infrastructure.outbox.repository.OutboxMessageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +20,8 @@ public class PurchaseService {
 
     private final VendingMachineRepository vendingMachineRepository;
     private final UserRepository userRepository;
+    private final OutboxMapper outboxMapper;
+    private final OutboxMessageRepository outboxMessageRepository;
 
     public List<DomainEvent> handle(PurchaseProductCommand command) {
         VendingMachine machine = vendingMachineRepository.findById(command.getVendingMachineId())
@@ -27,10 +33,20 @@ public class PurchaseService {
         Product product = findProductInMachine(machine, command.getProductId());
 
         machine.purchaseProduct(user, product);
+
+        // save domain state
         userRepository.save(user);
         vendingMachineRepository.save(machine);
 
-        return machine.getDomainEvents(); // todo Outbox’a yazılacak
+        // save domain events as outbox messages
+        machine.getDomainEvents().forEach(domainEvent -> {
+            var outboxMessageEntity = outboxMapper.toOutboxMessage(domainEvent, "Vending Machine");
+            outboxMessageRepository.save(outboxMessageEntity);
+        });
+
+        // todo machine.clearDomainEvents();
+
+        return machine.getDomainEvents();
     }
 
     private Product findProductInMachine(VendingMachine machine, String productId) {
