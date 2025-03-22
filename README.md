@@ -4,17 +4,17 @@
 - **Backend:** Spring Boot (Java 21)
 - **Database:** PostgreSQL
 - **Event-Driven Architecture:** Apache Kafka & RabbitMQ
-- **Asenkron Mesajlaşma:** Outbox Pattern (RabbitMQ ile mesaj kuyruğu, Kafka ile event propagation)
+- **Asenkron Mesajlaşma:** Outbox Pattern (RabbitMQ & Kafka)
 - **API Dokümantasyonu:** Swagger
 - **Güvenlik & Hata Yönetimi:** Error event mekanizması, Dead Letter Queue (DLQ)
 
 ## Mimari Bileşenler
 ### 1. **Domain Modelleme**
-- **Ana Entity'ler:** Money, Product, VendingMachine
+- **Ana Entity'ler:** Product, VendingMachine, User
 - **DDD Prensipleri:**
-  - **Aggregate Roots:** VendingMachine (Ürün, para işlemleri burada yönetilir)
+  - **Aggregate Roots:** VendingMachine (Ürün stoğu ve seçimi burada yönetilir), User (kimlik ve bakiye yönetimi)
   - **Repositories:** Veritabanı erişimi için
-  - **Domain Events:** Transaction başarı/hata eventleri, stok yönetimi eventleri
+  - **Domain Events:** Transaction başarı/hata eventleri, stok yönetimi eventleri, kullanıcı işlemleri
 
 ### 2. **Event-Driven Mimari**
 - **Outbox Pattern** iki aşamalı çalışır:
@@ -25,6 +25,8 @@
 
 ### 3. **API Design**
 - **RESTful API**
+  - **Register / Login** (User authentication)
+  - **Logout** (User authentication)
   - **Accept Payment**
   - **Select Product and/or Purchase**
   - **Refund Transaction**
@@ -56,7 +58,7 @@
 
 
 ## Optionals
-- **Frontend Integratıon** with react
-- **Observability / Monitoring** Prometheus + Grafana ile sistemsel metrikleri izleme, Biraz abartalım dersek ELK Stack (Elastıc Search logstash  kibana) ile log yönetimi.
+- **Frontend Integration** with React
+- **Observability / Monitoring:** Prometheus + Grafana ile sistemsel metrikleri izleme, biraz abartalım dersek ELK Stack (Elasticsearch, Logstash, Kibana) ile log yönetimi.
 - **Authentication & Security:** Basic Auth or JWT
-- **Deployment:** Docker Compose, Kubernetes (K8s), image regıstry hub.
+- **Deployment:** Docker Compose, Kubernetes (K8s), Sonetype Nexus as docker image registry.

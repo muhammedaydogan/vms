@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75e79f25-b3e5-4bbe-a57d-aae9d5bd0374" name="Changes" comment="reorganized file structure" />
+    <list default="true" id="75e79f25-b3e5-4bbe-a57d-aae9d5bd0374" name="Changes" comment="reorganized file structure">
+      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/Money.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/VendingMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/VmsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/VendingMachineServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vms/src/test/java/com/vm/vending/VmsApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/vms/src/test/java/com/vm/vending/VendingMachineServiceApplicationTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +22,13 @@
   <component name="ChangesViewManager">
     <option name="groupingKeys">
       <option value="module" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
     </option>
   </component>
   <component name="Git.Settings">
@@ -50,7 +66,6 @@
     <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
     <option name="flattenModules" value="true" />
-    <option name="flattenPackages" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
@@ -91,7 +106,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1742659662002</updated>
-      <workItem from="1742659663917" duration="1240000" />
+      <workItem from="1742659663917" duration="2623000" />
     </task>
     <task id="LOCAL-00001" summary="turned vms into module">
       <option name="closed" value="true" />
@@ -117,7 +132,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742661404885</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="reorganized file structure">
+      <option name="closed" value="true" />
+      <created>1742661421751</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742661421751</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
