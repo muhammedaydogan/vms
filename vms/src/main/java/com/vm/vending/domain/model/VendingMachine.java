@@ -1,14 +1,13 @@
 package com.vm.vending.domain.model;
 
-import jakarta.annotation.PostConstruct;
+import com.vm.vending.domain.event.DomainEvent;
+import com.vm.vending.domain.event.ProductPurchasedEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Getter
 @AllArgsConstructor
@@ -16,6 +15,7 @@ import java.util.UUID;
 public class VendingMachine {
     private UUID id;
     private Map<Product, Integer> stock = new HashMap<>();
+    private final List<DomainEvent> domainEvents = new ArrayList<>();
 
     public boolean isProductAvailable(Product product) {
         return stock.getOrDefault(product, 0) > 0;
@@ -33,7 +33,9 @@ public class VendingMachine {
         user.decreaseBalance(new Money(product.getPrice()));
         stock.put(product, stock.get(product) - 1);
 
-        // todo
-        // domainEvents.add(new ProductPurchasedEvent(user.getId(), product.getId(), LocalDateTime.now()));
+        domainEvents.add(new ProductPurchasedEvent(
+                this.id, user.getId(), product.getId(), LocalDateTime.now()
+        ));
+        // todo send to Outbox Table later on.
     }
 }
