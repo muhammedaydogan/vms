@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75e79f25-b3e5-4bbe-a57d-aae9d5bd0374" name="Changes" comment="implementated ddd models and updated structure">
-      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/repository/VendingMachineRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/infrastructure/config/VendingMachineInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/infrastructure/persistence/VendingMachineJpaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/infrastructure/persistence/VendingMachineRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/infrastructure/persistence/entity/VendingMachineEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/Money.java" beforeDir="false" afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/Money.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/VendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/vms/src/main/java/com/vm/vending/domain/model/VendingMachine.java" afterDir="false" />
-    </list>
+    <list default="true" id="75e79f25-b3e5-4bbe-a57d-aae9d5bd0374" name="Changes" comment="implemented vm repository and persistence mapping" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,7 +97,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1742659662002</updated>
-      <workItem from="1742659663917" duration="4889000" />
+      <workItem from="1742659663917" duration="5307000" />
     </task>
     <task id="LOCAL-00001" summary="turned vms into module">
       <option name="closed" value="true" />
@@ -148,7 +139,39 @@
       <option name="project" value="LOCAL" />
       <updated>1742663107510</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="implemented vm repository and persistence mapping">
+      <option name="closed" value="true" />
+      <created>1742665243014</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742665243014</updated>
+    </task>
+    <task id="LOCAL-00007" summary="implemented vm repository and persistence mapping">
+      <option name="closed" value="true" />
+      <created>1742665290403</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1742665290404</updated>
+    </task>
+    <task id="LOCAL-00008" summary="implemented vm repository and persistence mapping">
+      <option name="closed" value="true" />
+      <created>1742665456448</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1742665456448</updated>
+    </task>
+    <task id="LOCAL-00009" summary="implemented vm repository and persistence mapping">
+      <option name="closed" value="true" />
+      <created>1742665486405</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1742665486405</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,6 +192,7 @@
     <MESSAGE value="turned vms into module" />
     <MESSAGE value="reorganized file structure" />
     <MESSAGE value="implementated ddd models and updated structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementated ddd models and updated structure" />
+    <MESSAGE value="implemented vm repository and persistence mapping" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented vm repository and persistence mapping" />
   </component>
 </project>
