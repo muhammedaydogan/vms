@@ -1,6 +1,6 @@
 package com.vm.vending.application.service;
 
-import com.vm.vending.application.command.PurchageProductCommand;
+import com.vm.vending.application.command.PurchaseProductCommand;
 import com.vm.vending.domain.event.DomainEvent;
 import com.vm.vending.domain.model.*;
 import com.vm.vending.domain.repository.UserRepository;
@@ -17,7 +17,7 @@ public class PurchaseService {
     private final VendingMachineRepository vendingMachineRepository;
     private final UserRepository userRepository;
 
-    public List<DomainEvent> handle(PurchageProductCommand command) {
+    public List<DomainEvent> handle(PurchaseProductCommand command) {
         VendingMachine machine = vendingMachineRepository.findById(command.getVendingMachineId())
                 .orElseThrow(() -> new IllegalArgumentException("Vending machine not found"));
 

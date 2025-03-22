@@ -5,7 +5,7 @@ import lombok.Value;
 import java.util.UUID;
 
 @Value
-public class PurchageProductCommand {
+public class PurchaseProductCommand {
     UUID userId;
     UUID vendingMachineId;
     String productId;
