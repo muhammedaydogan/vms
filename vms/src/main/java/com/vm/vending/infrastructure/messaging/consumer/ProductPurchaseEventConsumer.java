@@ -43,4 +43,10 @@ public class ProductPurchaseEventConsumer {
             log.error("Error processing ProductPurchasedEvent", e);
         }
     }
+
+    // Test DLQ
+//    @RabbitListener(queues = "ProductPurchasedEvent")
+//    public void handle(String payload) {
+//        throw new RuntimeException("DLQ testi için bilerek hata");
+//    }
 }

@@ -5,6 +5,7 @@ import com.vm.vending.infrastructure.outbox.repository.OutboxMessageRepository;
 import com.vm.vending.infrastructure.publisher.EventPublisher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import java.util.List;
 public class OutboxDispatcher {
     private final OutboxMessageRepository outboxMessageRepository;
     private final EventPublisher eventPublisher;
+    private final RabbitTemplate rabbitTemplate;
 
 
     @Scheduled(fixedDelay = 5000) // Todo enable/disable and configure from config. make custom annotation for this
@@ -33,6 +35,9 @@ public class OutboxDispatcher {
             } catch (Exception e) {
                 log.error("Failed to publish outbox message with id: {}", message.getId(), e);
                 message.setStatus("FAILED");
+
+                // DLQ Publish
+                rabbitTemplate.convertAndSend("vending.dlq", "event.dlq", message.getPayload());
             }
         }
 
