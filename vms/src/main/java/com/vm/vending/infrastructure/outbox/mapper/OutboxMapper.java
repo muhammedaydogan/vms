@@ -16,16 +16,16 @@ public class OutboxMapper {
 
     public OutboxMessageEntity toOutboxMessage(DomainEvent event, String aggregateType) {
         try {
-            return new OutboxMessageEntity(
-                    null,
-                    event.getAggregateId(),
-                    aggregateType,
-                    event.getEventType(),
-                    objectMapper.writeValueAsString(event),
-                    event.getOccurredAt(),
-                    "NEW",
-                    LocalDateTime.now()
-            );
+            return new OutboxMessageEntity().builder()
+                    .aggregateId(event.getAggregateId())
+                    .aggregateType(aggregateType)
+                    .eventType(event.getEventType())
+                    .payload(objectMapper.writeValueAsString(event))
+                    .status("NEW")
+                    .retryCount(0)
+                    .occurredAt(event.getOccurredAt())
+                    .lastTriedAt(LocalDateTime.now())
+                    .build();
         } catch (Exception e) {
             throw new RuntimeException("Failed to map event to Outbox", e);
         }

@@ -14,6 +14,6 @@ public class RabbitEventPublisher implements EventPublisher {
     @Override
     public void publish(String eventType, String payload) {
         // topic = eventType -> exhange adi
-        rabbitTemplate.convertAndSend(eventType, payload);
+        rabbitTemplate.convertAndSend("vending.events", eventType, payload);
     }
 }

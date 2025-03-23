@@ -37,4 +37,14 @@ public class VendingMachine {
                 this.id, user.getId(), product.getId(), LocalDateTime.now()
         ));
     }
+    public Product findProductById(String productId) {
+        return stock.keySet().stream()
+                .filter(p -> p.getId().equals(productId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Product not found in machine"));
+    }
+
+    public void increaseProductStock(Product product) {
+        stock.put(product, stock.getOrDefault(product, 0) + 1);
+    }
 }

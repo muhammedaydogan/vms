@@ -42,7 +42,7 @@ public class PurchaseService {
 
         // save domain events as outbox messages
         machine.getDomainEvents().forEach(domainEvent -> {
-            var outboxMessageEntity = outboxMapper.toOutboxMessage(domainEvent, "Vending Machine");
+            var outboxMessageEntity = outboxMapper.toOutboxMessage(domainEvent, "VendingMachine");
             outboxMessageRepository.save(outboxMessageEntity);
         });
 
