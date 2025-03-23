@@ -1,6 +1,6 @@
 package com.vm.vending.api.controller;
 
-import com.vm.vending.api.dto.ProductStockResponse;
+import com.vm.common.api.dto.ProductStockResponse;
 import com.vm.vending.application.service.VendingMachineService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

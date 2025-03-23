@@ -1,4 +1,4 @@
-package com.vm.vending.application.command;
+package com.vm.common.application.command;
 
 import lombok.Value;
 

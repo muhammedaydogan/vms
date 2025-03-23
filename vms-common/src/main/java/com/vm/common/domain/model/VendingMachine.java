@@ -1,7 +1,7 @@
-package com.vm.vending.domain.model;
+package com.vm.common.domain.model;
 
-import com.vm.vending.domain.event.DomainEvent;
-import com.vm.vending.domain.event.ProductPurchasedEvent;
+import com.vm.common.domain.event.DomainEvent;
+import com.vm.common.domain.event.ProductPurchasedEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

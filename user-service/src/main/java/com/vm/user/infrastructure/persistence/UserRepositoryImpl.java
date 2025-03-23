@@ -1,9 +1,9 @@
-package com.vm.vending.infrastructure.persistence;
+package com.vm.user.infrastructure.persistence;
 
-import com.vm.vending.domain.model.Money;
-import com.vm.vending.domain.model.User;
-import com.vm.vending.domain.repository.UserRepository;
-import com.vm.vending.infrastructure.persistence.entity.UserEntity;
+import com.vm.common.domain.model.Money;
+import com.vm.common.domain.model.User;
+import com.vm.user.domain.repository.UserRepository;
+import com.vm.user.infrastructure.persistence.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

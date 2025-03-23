@@ -1,14 +1,11 @@
 package com.vm.vending.infrastructure.messaging.consumer;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vm.vending.domain.event.PurchaseRollbackEvent;
-import com.vm.vending.domain.model.Money;
-import com.vm.vending.domain.model.Product;
-import com.vm.vending.domain.model.User;
-import com.vm.vending.domain.model.VendingMachine;
-import com.vm.vending.domain.repository.UserRepository;
+import com.vm.common.domain.event.PurchaseRollbackEvent;
+import com.vm.common.domain.model.Money;
+import com.vm.common.domain.model.Product;
+import com.vm.common.domain.model.User;
+import com.vm.common.domain.model.VendingMachine;
 import com.vm.vending.domain.repository.VendingMachineRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class PurchaseRollbackConsumer {
 
     private final ObjectMapper objectMapper;
-    private final UserRepository userRepository;
+//    private final UserRepository userRepository;
     private final VendingMachineRepository vendingMachineRepository;
 
     @RabbitListener(queues = "vending.event.purchase-rollback")
@@ -31,18 +28,19 @@ public class PurchaseRollbackConsumer {
 
             log.info("Received rollback event: {}", event.getEventType());
 
-            User user = userRepository.findById(event.getUserId())
-                    .orElseThrow(() -> new IllegalArgumentException("User not found"));
+            // TODO FIX
+//            User user = userRepository.findById(event.getUserId())
+//                    .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
             VendingMachine machine = vendingMachineRepository.findById(event.getVendingMachineId())
                     .orElseThrow(() -> new IllegalArgumentException("Vending Machine not found"));
 
             Product product = machine.findProductById(event.getProductId());
 
-            user.increaseBalance(new Money(event.getPrice()));
+//            user.increaseBalance(new Money(event.getPrice()));
             machine.increaseProductStock(product);
 
-            userRepository.save(user);
+//            userRepository.save(user);
             vendingMachineRepository.save(machine);
 
             log.info("Rollback operation completed. Money refunded and stock restored: {}", product);

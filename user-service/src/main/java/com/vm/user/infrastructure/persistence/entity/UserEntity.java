@@ -1,4 +1,4 @@
-package com.vm.vending.infrastructure.persistence.entity;
+package com.vm.user.infrastructure.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

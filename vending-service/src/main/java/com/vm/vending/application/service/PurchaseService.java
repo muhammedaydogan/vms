@@ -1,11 +1,11 @@
 package com.vm.vending.application.service;
 
-import com.vm.vending.application.command.PurchaseProductCommand;
-import com.vm.vending.domain.event.DomainEvent;
-import com.vm.vending.domain.model.Product;
-import com.vm.vending.domain.model.User;
-import com.vm.vending.domain.model.VendingMachine;
-import com.vm.vending.domain.repository.UserRepository;
+import com.vm.common.application.command.PurchaseProductCommand;
+import com.vm.common.domain.event.DomainEvent;
+import com.vm.common.domain.model.Product;
+import com.vm.common.domain.model.User;
+import com.vm.common.domain.model.VendingMachine;
+//import com.vm.common.domain.repository.UserRepository;
 import com.vm.vending.domain.repository.VendingMachineRepository;
 import com.vm.vending.infrastructure.outbox.mapper.OutboxMapper;
 import com.vm.vending.infrastructure.outbox.repository.OutboxMessageRepository;
@@ -20,7 +20,7 @@ import java.util.List;
 public class PurchaseService {
 
     private final VendingMachineRepository vendingMachineRepository;
-    private final UserRepository userRepository;
+//    private final UserRepository userRepository;
     private final OutboxMapper outboxMapper;
     private final OutboxMessageRepository outboxMessageRepository;
 
@@ -29,15 +29,15 @@ public class PurchaseService {
         VendingMachine machine = vendingMachineRepository.findById(command.getVendingMachineId())
                 .orElseThrow(() -> new IllegalArgumentException("Vending machine not found"));
 
-        User user = userRepository.findById(command.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+//        User user = userRepository.findById(command.getUserId()) // TODO FIX
+//                .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         Product product = findProductInMachine(machine, command.getProductId());
 
-        machine.purchaseProduct(user, product); // todo bu kisim ayri bir controller'a baglanip sepet mantigi yapilacak
+//        machine.purchaseProduct(user, product); // todo bu kisim ayri bir controller'a baglanip sepet mantigi yapilacak
 
         // save domain state
-        userRepository.save(user);
+//        userRepository.save(user);
         vendingMachineRepository.save(machine);
 
         // save domain events as outbox messages

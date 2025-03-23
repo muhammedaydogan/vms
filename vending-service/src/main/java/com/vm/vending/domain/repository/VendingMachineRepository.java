@@ -1,7 +1,6 @@
 package com.vm.vending.domain.repository;
 
-import com.vm.vending.domain.model.VendingMachine;
-
+import com.vm.common.domain.model.VendingMachine;
 import java.util.Optional;
 import java.util.UUID;
 

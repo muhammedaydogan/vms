@@ -1,6 +1,6 @@
-package com.vm.vending.domain.repository;
+package com.vm.user.domain.repository;
 
-import com.vm.vending.domain.model.User;
+import com.vm.common.domain.model.User;
 
 import java.util.Optional;
 import java.util.UUID;

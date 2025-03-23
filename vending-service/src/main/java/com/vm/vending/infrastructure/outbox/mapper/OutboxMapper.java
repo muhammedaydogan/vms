@@ -1,7 +1,7 @@
 package com.vm.vending.infrastructure.outbox.mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vm.vending.domain.event.DomainEvent;
+import com.vm.common.domain.event.DomainEvent;
 import com.vm.vending.infrastructure.outbox.entity.OutboxMessageEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

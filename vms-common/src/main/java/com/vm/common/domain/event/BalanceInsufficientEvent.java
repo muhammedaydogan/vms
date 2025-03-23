@@ -1,4 +1,4 @@
-package com.vm.vending.domain.event;
+package com.vm.common.domain.event;
 
 import lombok.Value;
 import java.time.LocalDateTime;
