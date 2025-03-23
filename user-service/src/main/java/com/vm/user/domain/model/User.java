@@ -1,5 +1,6 @@
-package com.vm.common.domain.model;
+package com.vm.user.domain.model;
 
+import com.vm.common.domain.model.Money;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

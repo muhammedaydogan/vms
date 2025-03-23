@@ -1,4 +1,4 @@
-package com.vm.vending.infrastructure.outbox.mapper;
+package com.vm.user.infrastructure.outbox.mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vm.common.domain.event.DomainEvent;

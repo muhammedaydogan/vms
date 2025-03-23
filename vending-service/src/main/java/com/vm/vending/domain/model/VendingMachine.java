@@ -1,12 +1,11 @@
-package com.vm.common.domain.model;
+package com.vm.vending.domain.model;
 
 import com.vm.common.domain.event.DomainEvent;
-import com.vm.common.domain.event.ProductPurchasedEvent;
+import com.vm.common.domain.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Getter
@@ -21,22 +20,24 @@ public class VendingMachine {
         return stock.getOrDefault(product, 0) > 0;
     }
 
-    public void purchaseProduct(User user, Product product) {
-        if (!isProductAvailable(product)) {
-            throw new IllegalStateException("Product out of stock");
-        }
+    // TODO FIX
+//    public void purchaseProduct(User user, Product product) {
+//        if (!isProductAvailable(product)) {
+//            throw new IllegalStateException("Product out of stock");
+//        }
+//
+//        if (!user.hasEnoughBalance(new Money(product.getPrice()))) {
+//            throw new IllegalStateException("Insufficient balance");
+//        }
+//
+//        user.decreaseBalance(new Money(product.getPrice()));
+//        stock.put(product, stock.get(product) - 1);
+//
+//        domainEvents.add(new ProductPurchasedEvent(
+//                this.id, user.getId(), product.getId(), LocalDateTime.now()
+//        ));
+//    }
 
-        if (!user.hasEnoughBalance(new Money(product.getPrice()))) {
-            throw new IllegalStateException("Insufficient balance");
-        }
-
-        user.decreaseBalance(new Money(product.getPrice()));
-        stock.put(product, stock.get(product) - 1);
-
-        domainEvents.add(new ProductPurchasedEvent(
-                this.id, user.getId(), product.getId(), LocalDateTime.now()
-        ));
-    }
     public Product findProductById(String productId) {
         return stock.keySet().stream()
                 .filter(p -> p.getId().equals(productId))

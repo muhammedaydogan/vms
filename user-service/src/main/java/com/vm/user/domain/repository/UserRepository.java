@@ -1,6 +1,6 @@
 package com.vm.user.domain.repository;
 
-import com.vm.common.domain.model.User;
+import com.vm.user.domain.model.User;
 
 import java.util.Optional;
 import java.util.UUID;

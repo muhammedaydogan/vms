@@ -2,10 +2,8 @@ package com.vm.vending.infrastructure.messaging.consumer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vm.common.domain.event.PurchaseRollbackEvent;
-import com.vm.common.domain.model.Money;
 import com.vm.common.domain.model.Product;
-import com.vm.common.domain.model.User;
-import com.vm.common.domain.model.VendingMachine;
+import com.vm.vending.domain.model.VendingMachine;
 import com.vm.vending.domain.repository.VendingMachineRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

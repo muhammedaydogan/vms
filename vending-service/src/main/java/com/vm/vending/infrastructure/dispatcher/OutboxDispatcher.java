@@ -1,6 +1,6 @@
 package com.vm.vending.infrastructure.dispatcher;
 
-import com.vm.vending.infrastructure.outbox.entity.OutboxMessageEntity;
+import com.vm.common.infrastructure.outbox.entity.OutboxMessageEntity;
 import com.vm.vending.infrastructure.outbox.repository.OutboxMessageRepository;
 import com.vm.vending.infrastructure.messaging.publisher.EventPublisher;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.vm.vending.infrastructure.outbox.repository;
+package com.vm.user.infrastructure.outbox.repository;
 
 import com.vm.common.infrastructure.outbox.entity.OutboxMessageEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

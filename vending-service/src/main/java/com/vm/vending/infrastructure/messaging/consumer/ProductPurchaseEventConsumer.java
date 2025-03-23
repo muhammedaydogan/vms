@@ -3,7 +3,7 @@ package com.vm.vending.infrastructure.messaging.consumer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vm.common.domain.event.ProductPurchasedEvent;
 import com.vm.common.domain.event.PurchaseConfirmedEvent;
-import com.vm.vending.infrastructure.outbox.entity.OutboxMessageEntity;
+import com.vm.common.infrastructure.outbox.entity.OutboxMessageEntity;
 import com.vm.vending.infrastructure.outbox.mapper.OutboxMapper;
 import com.vm.vending.infrastructure.outbox.repository.OutboxMessageRepository;
 import lombok.RequiredArgsConstructor;

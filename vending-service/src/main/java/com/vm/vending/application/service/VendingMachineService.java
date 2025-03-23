@@ -1,7 +1,7 @@
 package com.vm.vending.application.service;
 
 import com.vm.common.domain.model.Product;
-import com.vm.common.domain.model.VendingMachine;
+import com.vm.vending.domain.model.VendingMachine;
 import com.vm.vending.domain.repository.VendingMachineRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

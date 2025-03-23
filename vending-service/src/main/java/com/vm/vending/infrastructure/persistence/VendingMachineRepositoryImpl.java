@@ -1,7 +1,7 @@
 package com.vm.vending.infrastructure.persistence;
 
 import com.vm.common.domain.model.Product;
-import com.vm.common.domain.model.VendingMachine;
+import com.vm.vending.domain.model.VendingMachine;
 import com.vm.vending.domain.repository.VendingMachineRepository;
 import com.vm.vending.infrastructure.persistence.entity.VendingMachineEntity;
 import lombok.RequiredArgsConstructor;

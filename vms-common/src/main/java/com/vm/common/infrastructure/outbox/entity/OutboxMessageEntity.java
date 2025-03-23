@@ -1,7 +1,8 @@
-package com.vm.vending.infrastructure.outbox.entity;
+package com.vm.common.infrastructure.outbox.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
