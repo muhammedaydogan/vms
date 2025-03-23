@@ -11,25 +11,49 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class OutboxMessageEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
     private UUID aggregateId;
-
     private String aggregateType;
-
     private String eventType;
 
     @Lob
     private String payload; // JSON
 
-    private LocalDateTime occurredAt;
 
     // todo turn into enum
-    private String status; // NEW, SENT, FAILED
+    private String status; // NEW, SENT, FAILED, DEAD
 
-    private LocalDateTime createdAt;
+    private int retryCount;
+
+    private LocalDateTime occurredAt;
+    private LocalDateTime lastTriedAt;
+
+    public void markAsSent() {
+        this.status = "SENT";
+    }
+
+    public void markAsFailed() {
+        this.status = "FAILED";
+        this.retryCount += 1;
+        this.lastTriedAt = LocalDateTime.now();
+    }
+
+    public void markAsDead() {
+        this.status = "DEAD";
+        this.lastTriedAt = LocalDateTime.now();
+    }
+
+    public boolean isRetryLimitExceeded(int maxRetry) {
+        return this.retryCount >= maxRetry;
+    }
+
+    public boolean isPending() {
+        return "NEW".equals(this.status) || "FAILED".equals(this.status);
+    }
 }

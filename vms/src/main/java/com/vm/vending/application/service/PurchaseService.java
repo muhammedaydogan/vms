@@ -11,6 +11,7 @@ import com.vm.vending.infrastructure.outbox.mapper.OutboxMapper;
 import com.vm.vending.infrastructure.outbox.repository.OutboxMessageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class PurchaseService {
     private final OutboxMapper outboxMapper;
     private final OutboxMessageRepository outboxMessageRepository;
 
+    @Transactional
     public List<DomainEvent> handle(PurchaseProductCommand command) {
         VendingMachine machine = vendingMachineRepository.findById(command.getVendingMachineId())
                 .orElseThrow(() -> new IllegalArgumentException("Vending machine not found"));
@@ -32,7 +34,7 @@ public class PurchaseService {
 
         Product product = findProductInMachine(machine, command.getProductId());
 
-        machine.purchaseProduct(user, product);
+        machine.purchaseProduct(user, product); // todo bu kisim ayri bir controller'a baglanip sepet mantigi yapilacak
 
         // save domain state
         userRepository.save(user);

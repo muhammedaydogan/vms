@@ -23,7 +23,8 @@
 | Event sourcing / analytics | Kafka    | Data lake mantığı, replay        
 
 ## Outbox Pattern
-**Dispatcher**, belirli aralıklarla bu tabloyu tarar ve `status = NEW` olan kayıtları **RabbitMQ**'ya gönderir.
+**Dispatcher**, belirli aralıklarla bu tabloyu tarar ve `status = NEW ya da FAILED` olan kayıtları **RabbitMQ**'ya gönderir.  
+Retry limiti dolunca `status = DEAD` olur. DEAD olan mesajlar DLQ'ya hemen gonderilir. Dead mesajların outbox Table'dan silinmesi 3 yolla gerçekleşebilir: Timeout'a düşer (mesela 7 gün). Cleanup Service'i tarafından. Ya da compensating event'i (varsa/mümkümse) başarıyla işlenince 
 ### 🔄 Event Akışı
 
 ```plaintext
