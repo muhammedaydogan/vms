@@ -1,16 +1,16 @@
-# Vending Machine API Dokümantasyonu
+# Vending Machine API Documentation
 
 ---
 ## User Operations
 
-### 🔸 POST /api/auth/register
+### 🔸 POST /api/user/register
 New User
 
 **Request Body:**
 ```json
 {
   "username": "ahmet",
-  "password": "1234"
+  "passwordHash": "1234"
 }
 ```
 
@@ -24,15 +24,64 @@ New User
 
 ---
 
-### 🔸 POST /api/auth/login 
+### 🔸 POST /api/user/login
 Login
 
 **Request Body:**
 ```json
 {
   "username": "ahmet",
-  "password": "1234"
+  "passwordHash": "1234"
 }
+```
+**Response Body:**
+```
+Login Successful
+```
+---
+
+### 🔸 POST /api/user/logout
+Logout
+
+**Request Body:**
+```json
+{
+  "username": "ahmet",
+  "passwordHash": "1234"
+}
+```
+**Response Body:**
+```
+Logout Successful
+```
+
+---
+
+### 🔸 GET /api/user/{userId}/balance
+Get Balance
+
+**Response Body:**
+```
+350
+```
+
+---
+
+### 💰 Add Balance
+**POST** `/api/user/balance`
+
+Adds balance to a user. Return current balance
+
+**Request Body:**
+```json
+{
+  "userId": "uuid",
+  "balance": 100
+}
+```
+**Response Body:**
+```
+450
 ```
 
 ---
@@ -61,7 +110,7 @@ Purchase from a vending machine by user identity
 
 ---
 
-## Ürün İşlemleri
+## Product Operations
 
 ### 🔸 GET /api/machines/{machineId}/products
 List stocks on a vending machine
@@ -88,5 +137,3 @@ List stocks on a vending machine
 - If error occurs before it has beensent the related domain event goes to `event.dlq` queue.
 
 ---
-
-To be continued...
