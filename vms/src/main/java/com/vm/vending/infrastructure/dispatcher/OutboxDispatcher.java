@@ -2,7 +2,7 @@ package com.vm.vending.infrastructure.dispatcher;
 
 import com.vm.vending.infrastructure.outbox.entity.OutboxMessageEntity;
 import com.vm.vending.infrastructure.outbox.repository.OutboxMessageRepository;
-import com.vm.vending.infrastructure.publisher.EventPublisher;
+import com.vm.vending.infrastructure.messaging.publisher.EventPublisher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
