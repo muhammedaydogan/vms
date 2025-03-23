@@ -1,10 +1,10 @@
-package com.vm.user_service;
+package com.vm.vms_common;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UserServiceApplicationTests {
+class VmsCommonApplicationTests {
 
 	@Test
 	void contextLoads() {
