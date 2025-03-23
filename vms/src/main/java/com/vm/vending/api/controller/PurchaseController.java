@@ -1,4 +1,4 @@
-package com.vm.vending.api;
+package com.vm.vending.api.controller;
 
 import com.vm.vending.application.command.PurchaseProductCommand;
 import com.vm.vending.application.service.PurchaseService;
