@@ -1,5 +1,8 @@
 package com.vm.vending.application.service;
 
+import com.vm.vending.application.command.AddBalanceCommand;
+import com.vm.vending.application.command.LoginUserCommand;
+import com.vm.vending.application.command.RegisterUserCommand;
 import com.vm.vending.domain.model.Money;
 import com.vm.vending.domain.model.User;
 import com.vm.vending.domain.repository.UserRepository;
@@ -13,22 +16,27 @@ import java.util.UUID;
 public class UserService {
     private final UserRepository userRepository;
 
-    public User registerUser(String username, String passwordHash) {
-        User user = new User(UUID.randomUUID(), username, passwordHash, new Money(0));
+    public User registerUser(RegisterUserCommand registerUserCommand) {
+        User user = new User(
+                UUID.randomUUID(),
+                registerUserCommand.getUsername(),
+                registerUserCommand.getPasswordHash(),
+                new Money(0)
+        );
         userRepository.save(user);
         return user;
     }
 
-    public boolean authenticate(UUID userId, String passwordHash) {
-        return userRepository.findById(userId)
-                .map(user -> user.getPasswordHash().equals(passwordHash))
+    public boolean authenticate(LoginUserCommand loginUserCommand) {
+        return userRepository.findById(loginUserCommand.getUserId())
+                .map(user -> user.getPasswordHash().equals(loginUserCommand.getPasswordHash()))
                 .orElse(false);
     }
 
-    public Integer addBalance(UUID userId, int amount) {
-        User user = userRepository.findById(userId)
+    public Integer addBalance(AddBalanceCommand request) {
+        User user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
-        user.increaseBalance(new Money(amount));
+        user.increaseBalance(new Money(request.getBalance()));
         userRepository.save(user);
         return user.getBalance().getAmount();
     }

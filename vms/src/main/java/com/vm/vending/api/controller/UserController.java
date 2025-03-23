@@ -21,12 +21,12 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody RegisterUserCommand request) {
         // TODO implement JWT
-        return ResponseEntity.ok(userService.registerUser(request.getUsername(), request.getPasswordHash()));
+        return ResponseEntity.ok(userService.registerUser(request));
     }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginUserCommand loginUserCommand) {
-        return userService.authenticate(loginUserCommand.getUserId(), loginUserCommand.getPasswordHash())
+        return userService.authenticate(loginUserCommand)
                 ? ResponseEntity.ok("Login successful")
                 : ResponseEntity.status(401).body("Invalid credentials");
     }
@@ -53,7 +53,7 @@ public class UserController {
     @PostMapping("/add-balance")
     public ResponseEntity<String> addBalance(@RequestBody AddBalanceCommand request) {
         try {
-            var newBalance = userService.addBalance(request.getUserId(), request.getBalance());
+            var newBalance = userService.addBalance(request);
             return ResponseEntity.ok(String.valueOf(newBalance));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(404).body("User not found");
