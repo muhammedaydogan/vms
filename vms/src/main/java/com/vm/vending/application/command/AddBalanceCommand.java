@@ -1,11 +1,11 @@
-package com.vm.vending.api.dto;
+package com.vm.vending.application.command;
 
 import lombok.Data;
 
 import java.util.UUID;
 
 @Data
-public class AddBalanceRequest {
+public class AddBalanceCommand {
     UUID userId;
     Integer balance;
 }

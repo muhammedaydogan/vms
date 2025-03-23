@@ -1,8 +1,8 @@
 package com.vm.vending.api.controller;
 
-import com.vm.vending.api.dto.AddBalanceRequest;
-import com.vm.vending.api.dto.LoginRequest;
-import com.vm.vending.api.dto.RegisterUserRequest;
+import com.vm.vending.application.command.AddBalanceCommand;
+import com.vm.vending.application.command.LoginUserCommand;
+import com.vm.vending.application.command.RegisterUserCommand;
 import com.vm.vending.application.service.UserService;
 import com.vm.vending.domain.model.User;
 import lombok.RequiredArgsConstructor;
@@ -19,14 +19,14 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody RegisterUserRequest request) {
+    public ResponseEntity<User> register(@RequestBody RegisterUserCommand request) {
         // TODO implement JWT
         return ResponseEntity.ok(userService.registerUser(request.getUsername(), request.getPasswordHash()));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        return userService.authenticate(loginRequest.getUserId(), loginRequest.getPasswordHash())
+    public ResponseEntity<String> login(@RequestBody LoginUserCommand loginUserCommand) {
+        return userService.authenticate(loginUserCommand.getUserId(), loginUserCommand.getPasswordHash())
                 ? ResponseEntity.ok("Login successful")
                 : ResponseEntity.status(401).body("Invalid credentials");
     }
@@ -51,7 +51,7 @@ public class UserController {
 
     // should use cardService or can be moved to cardController later on
     @PostMapping("/add-balance")
-    public ResponseEntity<String> addBalance(@RequestBody AddBalanceRequest request) {
+    public ResponseEntity<String> addBalance(@RequestBody AddBalanceCommand request) {
         try {
             var newBalance = userService.addBalance(request.getUserId(), request.getBalance());
             return ResponseEntity.ok(String.valueOf(newBalance));

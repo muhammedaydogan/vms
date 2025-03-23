@@ -1,9 +1,9 @@
-package com.vm.vending.api.dto;
+package com.vm.vending.application.command;
 
 import lombok.Data;
 
 @Data
-public class RegisterUserRequest {
+public class RegisterUserCommand {
     private String username;
     private String passwordHash;
 }

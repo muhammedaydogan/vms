@@ -1,11 +1,11 @@
-package com.vm.vending.api.dto;
+package com.vm.vending.application.command;
 
 import lombok.Data;
 
 import java.util.UUID;
 
 @Data
-public class LoginRequest {
+public class LoginUserCommand {
     private UUID userId;
     private String passwordHash;
 }
