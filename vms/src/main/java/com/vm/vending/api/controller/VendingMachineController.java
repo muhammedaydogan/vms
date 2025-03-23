@@ -1,8 +1,7 @@
 package com.vm.vending.api.controller;
 
-import com.vm.vending.api.dto.ProductStockDto;
+import com.vm.vending.api.dto.ProductStockResponse;
 import com.vm.vending.application.service.VendingMachineService;
-import com.vm.vending.domain.repository.VendingMachineRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,9 +18,9 @@ public class VendingMachineController {
     private final VendingMachineService vendingMachineService;
 
     @GetMapping("")
-    public List<ProductStockDto> getAvailableProducts(@PathVariable UUID machineId) {
+    public List<ProductStockResponse> getAvailableProducts(@PathVariable UUID machineId) {
         return vendingMachineService.getAllAvailableProductsByMachine(machineId).stream()
-                .map(entry -> new ProductStockDto(
+                .map(entry -> new ProductStockResponse(
                         entry.getKey().getId(),
                         entry.getKey().getName(),
                         entry.getKey().getPrice(),
