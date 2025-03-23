@@ -1,4 +1,4 @@
-package com.vm.common.domain.model;
+package com.vm.common.domain.valueobject;
 
 import lombok.Value;
 

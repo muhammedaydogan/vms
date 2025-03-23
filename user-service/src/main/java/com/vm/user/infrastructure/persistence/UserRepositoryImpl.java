@@ -1,6 +1,6 @@
 package com.vm.user.infrastructure.persistence;
 
-import com.vm.common.domain.model.Money;
+import com.vm.common.domain.valueobject.Money;
 import com.vm.user.domain.model.User;
 import com.vm.user.domain.repository.UserRepository;
 import com.vm.user.infrastructure.persistence.entity.UserEntity;
