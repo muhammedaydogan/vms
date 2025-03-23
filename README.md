@@ -1,68 +1,80 @@
 # Vending Machine System
 
-## Teknoloji ve Mimariler
+## Technologies and Architectures
+
 - **Backend:** Spring Boot (Java 21)
-- **Database:** PostgreSQL
-- **Event-Driven Architecture:** Apache Kafka & RabbitMQ
-- **Asenkron Mesajlaşma:** Outbox Pattern (RabbitMQ & Kafka)
-- **API Dokümantasyonu:** Swagger
-- **Güvenlik & Hata Yönetimi:** Error event mekanizması, Dead Letter Queue (DLQ)
+- **Database:** PostgreSQL, JPA
+- **Event-Driven Architecture**
+- **Asynchronous Messaging:** RabbitMQ & Kafka
+- **API Documentation:** Swagger
+- **Security & Error Management:** Outbox Pattern, Error event mechanism, Dead Letter Queue (DLQ)
 
-## Mimari Bileşenler
-### 1. **Domain Modelleme**
-- **Ana Entity'ler:** Product, VendingMachine, User
-- **DDD Prensipleri:**
-  - **Aggregate Roots:** VendingMachine (Ürün stoğu ve seçimi burada yönetilir), User (kimlik ve bakiye yönetimi)
-  - **Repositories:** Veritabanı erişimi için
-  - **Domain Events:** Transaction başarı/hata eventleri, stok yönetimi eventleri, kullanıcı işlemleri
+## Architectural Components
 
-### 2. **Event-Driven Mimari**
-- Sistem, **Outbox Pattern** ve **ACK Event** mantığına dayalı olarak tasarlanmıştır.
-  - Domain katmanında üretilen event’ler önce **Outbox tablosuna transactional olarak** yazılır.
-  - Bir dispatcher bileşeni, bu event’leri belirli aralıklarla **RabbitMQ** kuyruğuna gönderir.
-  - Event’leri alan tüketici (consumer), işlemi başarıyla tamamladığında bir **acknowledgement (ACK) event** üretir (örn. `PurchaseConfirmedEvent`).
-  - ACK event, yeniden Outbox üzerinden publish edilir.
-- **Kafka**, event propagation için kullanılır ve mikroservisler Kafka topic'lerinden eventleri dinler.
-- **Error eventleri**, hata yönetimi için işlenir (DLQ mekanizması ile).
-- Bu yapı, servisler arası **asenkron ve güvenilir iletişimi** destekler.
-- Sistem mimarisi ileride **Saga Pattern**’e genişletilmeye uygun şekilde planlanmıştır.
+### 1. Domain Modeling
 
-### 3. **API Design**
+- **Main Entities:** Product, VendingMachine, User
+- **DDD Principles:**
+    - **Aggregate Roots:** VendingMachine (manages stock & product selection), User (identity & balance)
+    - **Repositories:** UserRepository, VendingMachineRepository
+    - **Domain Events:** ProductPurchasedEvent, PurchaseConfirmedEvent, BalanceInsufficientEvent
+    - **Value Objects:** Money
+
+### 2. Event-Driven Architecture
+
+- The system is designed based on the **Outbox Pattern** and **ACK Event** logic.
+- Events generated in the domain layer are first written **transactionally to the Outbox table**.
+- A dispatcher component periodically sends these events to the **RabbitMQ** queue.
+- The consumer receiving the events produces an **acknowledgement (ACK) event** upon successful completion of the
+  process (e.g., `PurchaseConfirmedEvent`).
+- The ACK event is again published via the Outbox.
+- **Kafka** is used for event propagation, and microservices listen to events from Kafka topics.
+- **Error events** are processed for error management (using the DLQ mechanism).
+- The system architecture is planned to be expandable to the **Saga Pattern** in the future.
+
+### 3. API Design
+
 - **RESTful API**
-  - **Register / Login** (User authentication)
-  - **Logout** (User authentication)
-  - **Accept Payment**
-  - **Select Product and/or Purchase**
-  - **Refund Transaction**
-  - **Stock Control**
-- **Swagger UI** dokümantasyonu.
+    - **Register / Login** (User authentication)
+    - **Logout** (User authentication)
+    - **Accept Payment**
+    - **Select Product and/or Purchase**
+    - **Refund Transaction**
+    - **Stock Control**
+- **Swagger UI** documentation.
 
-### 4. **Veri Yönetimi ve Kalıcılık**
+### 4. Data Management and Persistence
+
 - DB type: **PostgreSQL**
-- **Her mikroservis kendi veritabanına sahip olacak şekilde bağımsız tasarlanmıştır.**
-- **Outbox tablosu** ile mesajların transactional olarak işlenmesi ve sistem **erişilebilirliği ve tutarlılığı**nın sağlanması.
+- **Each microservice is designed to be independent, having its own database.**
+- With the **Outbox table**, messages are processed transactionally, ensuring system **availability and consistency**.
 
-### 5. **Güvenlik & Hata Yönetimi**
-- **Hata eventleri** (örneğin, PaymentFailedEvent, StockDepletedEvent, TransactionFailedEvent)
-- **DLQ (Dead Letter Queue)** mekanizması ile başarısız mesajların işlenmesi
+### 5. Security & Error Management
 
-## Örnek Ürün Verileri
-| Ürün Adı | Fiyat (Birim) |
-|----------------|---|
-| Su             | 25
-| Kola           | 35
-| Soda           | 45
-| Snickers       | 50
-| Cips           | 40
-| Çikolata       | 30
-| Enerji İçeceği | 60
-| Meyve Suyu     | 55
-| Protein Bar    | 45
-| Sakız          | 20
+- **Error events** (e.g., PaymentFailedEvent, StockDepletedEvent, TransactionFailedEvent)
+- **DLQ (Dead Letter Queue)** mechanism for processing failed messages
 
+## Sample Product Data
+
+| Product Name   | Price (Unit) |
+|----------------|--------------|
+| Su             | 25           
+| Kola           | 35           
+| Soda           | 45           
+| Snickers       | 50           
+| Cips           | 40           
+| Çikolata       | 30           
+| Enerji İçeceği | 60           
+| Meyve Suyu     | 55           
+| Protein Bar    | 45           
+| Sakız          | 20           
 
 ## Optionals
+
 - **Frontend Integration** with React
-- **Observability / Monitoring:** Prometheus + Grafana ile sistemsel metrikleri izleme, biraz abartalım dersek ELK Stack (Elasticsearch, Logstash, Kibana) ile log yönetimi.
+- **Observability / Monitoring:** Monitoring system metrics with Prometheus + Grafana, and for more advanced logging,
+  using the ELK Stack (Elasticsearch, Logstash, Kibana).
 - **Authentication & Security:** Basic Auth or JWT
-- **Deployment:** Docker Compose, Kubernetes (K8s), Sonetype Nexus as docker image registry.
+- **Deployment:** Docker Compose, Kubernetes (K8s), Sonatype Nexus as docker image registry.
+- **SAGA Pattern**
+- **CQRS**
