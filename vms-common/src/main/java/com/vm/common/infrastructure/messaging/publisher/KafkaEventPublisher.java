@@ -1,4 +1,4 @@
-package com.vm.vending.infrastructure.messaging.publisher;
+package com.vm.common.infrastructure.messaging.publisher;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
