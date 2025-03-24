@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: purchase-service
+server:
+  port: 8082

@@ -1,4 +1,4 @@
-package com.vm.common.api.dto;
+package com.vm.common.api.dto.response;
 
 /**
  * Represents products that exists <br> (meaning that stock amount > 0)

@@ -26,8 +26,12 @@ public class PurchaseController {
     public ResponseEntity<PurchaseProductResponseDto> purchase(@RequestBody PurchaseProductRequestDto requestDto) {
         try {
             PurchaseProductCommand command = dtoToCommandMapper.toCommand(requestDto);
-            List<DomainEvent> events = purchaseService.handle(command);
-            return ResponseEntity.ok(dtoToCommandMapper.toResponse("SUCCESS", "Purchase completed"));
+            var events = purchaseService.handle(command);
+            if (events.isEmpty()) {
+                return ResponseEntity.status(400).body(dtoToCommandMapper.toResponse()).build();
+            } else {
+                return ResponseEntity.ok(dtoToCommandMapper.toResponse("SUCCESS", "Purchase completed"));
+            }
         } catch (Exception e) {
             return ResponseEntity.status(500).body(dtoToCommandMapper.toResponse("ERROR", e.getMessage()));
         }

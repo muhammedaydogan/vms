@@ -1,6 +1,6 @@
 package com.vm.vending.api.controller;
 
-import com.vm.common.api.dto.ProductStockResponse;
+import com.vm.common.api.dto.response.ProductStockResponse;
 import com.vm.vending.application.service.VendingMachineService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ import java.util.UUID;
 public class VendingMachineController {
     private final VendingMachineService vendingMachineService;
 
-    @GetMapping("")
+    @GetMapping("/{machineId}")
     public List<ProductStockResponse> getAvailableProducts(@PathVariable UUID machineId) {
         return vendingMachineService.getAllAvailableProductsByMachine(machineId).stream()
                 .map(entry -> new ProductStockResponse(

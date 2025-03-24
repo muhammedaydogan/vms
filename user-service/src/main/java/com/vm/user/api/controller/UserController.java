@@ -40,7 +40,7 @@ public class UserController {
         return ResponseEntity.status(404).body(null);
     }
 
-    @PostMapping("/{userId}/balance}")
+    @GetMapping("/{userId}/balance}")
     public ResponseEntity<String> getBalance(@PathVariable UUID userId) {
         try {
             return ResponseEntity.ok(String.valueOf(userService.getBalance(userId).getAmount()));

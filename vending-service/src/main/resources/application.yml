@@ -43,3 +43,5 @@ logging:
       springframework:
         amqp: DEBUG
         amqp.rabbit.connection: DEBUG
+server:
+  port: 8082

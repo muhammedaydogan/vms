@@ -42,8 +42,6 @@ public class PurchaseService {
 //            outboxMessageRepository.save(outboxMessageEntity);
 //        });
 
-        // todo machine.clearDomainEvents();
-
 //        return machine.getDomainEvents();
         return null;
     }
