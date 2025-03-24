@@ -12,5 +12,8 @@ import lombok.NoArgsConstructor;
 public class Product {
     private String id;
     private String name;
-    private int price; // birim cinsinden (örnek: kuruş)
+    /**
+     * represents <strong>turkish lira</strong>
+     */
+    private int price;
 }

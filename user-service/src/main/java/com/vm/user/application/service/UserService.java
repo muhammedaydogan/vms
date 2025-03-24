@@ -1,8 +1,8 @@
 package com.vm.user.application.service;
 
-import com.vm.common.application.command.AddBalanceCommand;
-import com.vm.common.application.command.LoginUserCommand;
-import com.vm.common.application.command.RegisterUserCommand;
+import com.vm.user.application.command.AddBalanceCommand;
+import com.vm.user.application.command.LoginUserCommand;
+import com.vm.user.application.command.RegisterUserCommand;
 import com.vm.common.domain.valueobject.Money;
 import com.vm.user.domain.model.User;
 import com.vm.user.domain.repository.UserRepository;

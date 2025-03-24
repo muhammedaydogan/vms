@@ -1,4 +1,4 @@
-package com.vm.common.application.command;
+package com.vm.user.application.command;
 
 import lombok.Data;
 
