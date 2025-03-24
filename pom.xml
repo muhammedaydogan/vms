@@ -15,6 +15,7 @@
         <module>vms-common</module>
         <module>user-service</module>
         <module>vending-service</module>
+        <module>purchase-service</module>
     </modules>
 
     <properties>
