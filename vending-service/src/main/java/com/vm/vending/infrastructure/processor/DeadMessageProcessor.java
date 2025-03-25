@@ -1,4 +1,4 @@
-package com.vm.vending.infrastructure.messaging.processor;
+package com.vm.vending.infrastructure.processor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vm.common.domain.event.ProductPurchasedEvent;
@@ -33,8 +33,9 @@ public class DeadMessageProcessor {
                 VendingMachine machine = vendingMachineRepository.findById(failedEvent.getAggregateId())
                         .orElseThrow(() -> new IllegalArgumentException("Vending Machine not found"));
 
-                Product product = machine.findProductById(failedEvent.getProductId());
-                int price = product.getPrice();
+//                Product product = machine.findProductById(failedEvent.getProductId());
+//                int price = product.getPrice();
+                int price = failedEvent.getPrice();
 
                 PurchaseRollbackEvent rollbackEvent = PurchaseRollbackEvent.builder()
                         .userId(failedEvent.getUserId())

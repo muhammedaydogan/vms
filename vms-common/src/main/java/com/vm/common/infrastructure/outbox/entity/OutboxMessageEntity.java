@@ -50,6 +50,10 @@ public class OutboxMessageEntity {
         this.lastTriedAt = LocalDateTime.now();
     }
 
+    public void markAsConfirmed() {
+        this.status = "CONFIRMED";
+    }
+
     public boolean isRetryLimitExceeded(int maxRetry) {
         return this.retryCount >= maxRetry;
     }

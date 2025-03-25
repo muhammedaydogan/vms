@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class ProductPurchaseEventConsumer {
+public class ProductPurchasedConsumer {
     private final ObjectMapper objectMapper;
     private final OutboxMapper outboxMapper;
     private final OutboxMessageRepository outboxMessageRepository;

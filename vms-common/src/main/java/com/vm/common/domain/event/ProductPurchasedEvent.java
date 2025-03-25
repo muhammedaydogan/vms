@@ -12,6 +12,7 @@ public class ProductPurchasedEvent implements DomainEvent {
     UUID aggregateId; // vending machine id
     UUID userId;
     String productId;
+    int price;
     LocalDateTime occurredAt;
 
     @Override
