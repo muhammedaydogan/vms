@@ -1,4 +1,4 @@
-package com.vm.common.infrastructure.outbox.entity;
+package com.vm.user.infrastructure.outbox.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

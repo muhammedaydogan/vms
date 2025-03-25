@@ -28,7 +28,7 @@ public class PurchaseController {
             PurchaseProductCommand command = dtoToCommandMapper.toCommand(requestDto);
             var events = purchaseService.handle(command);
             if (events.isEmpty()) {
-                return ResponseEntity.status(400).body(dtoToCommandMapper.toResponse()).build();
+                return ResponseEntity.status(400).body(dtoToCommandMapper.toResponse("EMPTY", "No Product Found"));
             } else {
                 return ResponseEntity.ok(dtoToCommandMapper.toResponse("SUCCESS", "Purchase completed"));
             }

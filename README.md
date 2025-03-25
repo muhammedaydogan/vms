@@ -3,22 +3,24 @@
 ## Technologies and Architectures
 
 - **Backend:** Spring Boot (Java 21)
-- **Database:** PostgreSQL, JPA
-- **Event-Driven Architecture**
+- **Database:** PostgreSQL (per-service), JPA
+- **Domain Driven Design**
 - **Asynchronous Messaging:** RabbitMQ & Kafka
-- **API Documentation:** Swagger
-- **Security & Error Management:** Outbox Pattern, Error event mechanism, Dead Letter Queue (DLQ)
+- **Messaging Pattern**: Outbox Pattern, Event-Driven Architecture (EDA)
+- **Observability:** Swagger
+- **Security & Error Management:** Error event mechanism, Dead Letter Queue (DLQ)
+- **Single Responsibility Principle**
 
 ## Architectural Components
 
 ### 1. Domain Modeling
 
-- **Main Entities:** Product, VendingMachine, User
+- **Main Entities:** `Product`, `VendingMachine`, `User`
 - **DDD Principles:**
-    - **Aggregate Roots:** VendingMachine (manages stock & product selection), User (identity & balance)
-    - **Repositories:** UserRepository, VendingMachineRepository
-    - **Domain Events:** ProductPurchasedEvent, PurchaseConfirmedEvent, BalanceInsufficientEvent
-    - **Value Objects:** Money
+    - **Aggregate Roots:** `VendingMachine` (manages stock & product selection), `User` (identity & balance)
+    - **Repositories:** `UserRepository`, `VendingMachineRepository` (also contains products), `OutBoxRepository`
+    - **Domain Events:** `ProductPurchasedEvent`, `PurchaseConfirmedEvent`, `BalanceInsufficientEvent`
+    - **Value Objects:** `Money`
 
 ### 2. Event-Driven Architecture
 
@@ -45,7 +47,6 @@
 
 ### 4. Data Management and Persistence
 
-- DB type: **PostgreSQL**
 - **Each microservice is designed to be independent, having its own database.**
 - With the **Outbox table**, messages are processed transactionally, ensuring system **availability and consistency**.
 
@@ -54,20 +55,23 @@
 - **Error events** (e.g., PaymentFailedEvent, StockDepletedEvent, TransactionFailedEvent)
 - **DLQ (Dead Letter Queue)** mechanism for processing failed messages
 
-## Sample Product Data
+### 6. Ne Nerede
+- Servisler arasi veri aktarimi:
+  - REST icin `Controller`'larda `Event`'lere cevrilmek `Dto`lar ile aktarilir. `Custom Mapper`lar kullanilir.
+  - Rabbit icin ise `Event`'lere maplenmek uzere `String` olarak aktarilir, fakat sistem icerisine girdiginde `DtoToCommandMapper` ile cevrim yapilip sistem icerisinde bu sekilde kullanilir.
+  - `Command`s ler application layer'indadir. Her servisin kendi ozelindedir. Common'da olamaz.
 
-| Product Name   | Price (Unit) |
-|----------------|--------------|
-| Su             | 25           
-| Kola           | 35           
-| Soda           | 45           
-| Snickers       | 50           
-| Cips           | 40           
-| Çikolata       | 30           
-| Enerji İçeceği | 60           
-| Meyve Suyu     | 55           
-| Protein Bar    | 45           
-| Sakız          | 20           
+### CQRS Support
+Az bir duzeltme ile getirilebilir.
+- Command ve Query ayrilmasi lazim, Command var Query tam olarak yok Event adında objeler dolaniyor.
+- Read ve Write Model'lerin ayrilmasi lazim su an bunlar ayni servislerde yapiliyor.
+- Event Driven Architecture var
+
+Sonuc olarak CommandHandler, Query, QueryHandler, Projection, ReadModelRepository, WriteModelRepository'ler yazilmasi gerekiyor.
+
+### 7. CQRS Support
+
+
 
 ## Optionals
 

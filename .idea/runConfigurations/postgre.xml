@@ -5,7 +5,7 @@
     <option name="SCRIPT_PATH" value="$PROJECT_DIR$/vms/start_postgres.sh" />
     <option name="SCRIPT_OPTIONS" value="" />
     <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="false" />
-    <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/vms" />
+    <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/vending-service" />
     <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
     <option name="INTERPRETER_PATH" value="cmd.exe" />
     <option name="INTERPRETER_OPTIONS" value="" />

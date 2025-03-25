@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vm.common.domain.event.ProductPurchasedEvent;
 import com.vm.common.domain.event.PurchaseRollbackEvent;
 import com.vm.common.domain.model.Product;
-import com.vm.common.infrastructure.outbox.entity.OutboxMessageEntity;
+import com.vm.vending.infrastructure.outbox.entity.OutboxMessageEntity;
 import com.vm.vending.domain.model.VendingMachine;
 import com.vm.vending.domain.repository.VendingMachineRepository;
 import com.vm.vending.infrastructure.outbox.mapper.OutboxMapper;

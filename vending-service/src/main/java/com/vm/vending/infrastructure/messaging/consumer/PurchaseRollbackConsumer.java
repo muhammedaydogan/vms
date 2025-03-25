@@ -19,7 +19,7 @@ public class PurchaseRollbackConsumer {
 //    private final UserRepository userRepository;
     private final VendingMachineRepository vendingMachineRepository;
 
-    @RabbitListener(queues = "vending.event.purchase-rollback")
+//    @RabbitListener(queues = "vending.event.purchase-rollback")
     public void consumePurchaseRollback(String payload) {
         try {
             PurchaseRollbackEvent event = objectMapper.readValue(payload, PurchaseRollbackEvent.class);

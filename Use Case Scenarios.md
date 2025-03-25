@@ -1,61 +1,24 @@
-# Use Case: Purchase Journey Through Frontend Interface
+# Use Case Scenarios
 
-## 🟢 1. Register/Login
+## 1. Register User
+- POST `/api/user/register`
+- [User Service] registers the user and returns credentials.
 
-**Frontend Action:**
+## 2. Login User
+- POST `/api/user/login`
+- [User Service] authenticates and returns a token (to be implemented).
 
-The user registers or logs in through the interface.
+## 3. View Products
+- GET `/api/machines/{machineId}`
+- [Vending Service] returns available products and their stock.
 
-**Related service and endpoint:**
-
-- user-service
-    - POST /api/user/register
-    - POST /api/user/login
-
----
-
-## 🟡 2. View Products
-
-**Frontend Action:**
-
-The user selects a vending machine and views the products inside.
-
-**Related service and endpoint:**
-
-- vending-service
-    - GET /api/machines/{machineId} → product + stock info
-
----
-
-## 🔵 3. View Balance / Add Balance
-
-**Frontend Action:**
-
-The user views their current balance or adds balance (like a credit card simulation).
-
-**Related service and endpoint:**
-
-- user-service
-    - GET /api/user/{userId}/balance
-    - POST /api/user/add-balance
-
----
-
-## 🔴 4. Purchase Product
-
-**Frontend Action:**
-
-The user selects a product and clicks the purchase button.
-
-**Related service and request flow:**
-
-- purchase-service
-    - POST /api/purchase  
-      ↓
-        - Calls user-service: GET /api/user/{id}/balance
-        - Calls vending-service: GET /api/machines/{id}  
-        ↓ If balance is enough
-          - Class vending-service: POST /api/machines/decrease-stock
+## 4. Purchase Product
+- POST `/api/purchase`
+- [Purchase Service] validates request and dispatches ProductPurchasedEvent.
+- [Vending Service] listens and reduces stock.
+- [User Service] optionally adjusts balance (currently NOT handled directly).
+- [Vending Service] sends PurchaseConfirmedEvent.
+- [Purchase Service] updates outbox message status accordingly.
 
 If conditions are met:
 

@@ -1,18 +1,36 @@
+# Structural Overview
+
+## Microservice Modules
+```
+vms/
+├── vms-parent/
+├── vms-common/
+│   └── shared domain, events, outbox entity, API DTOs
+├── user-service/
+├── vending-service/
+├── purchase-service/
+└── notificaiton-service/ (future)
+
+```
+
 ## Services & Domains
 
-| Service                | Domain                      | Responsibility               |
-|------------------------|-----------------------------|------------------------------|
-| `user-service`         | `User`, `Auth`              | Register/Login, Balance      
-| `vending-service`      | `VendingMachine`, `Product` | Purchasing, Stock Management 
-| `payment-service`      | `Payment`                   | Card verification            
-| `notification-service` | `EventLog`, `Message`       | DLQ, retry, email, vs        
+| Service                                          | Domain                      | Responsibility               |
+|--------------------------------------------------|-----------------------------|------------------------------|
+| `user-service`                                   | `User`, `Auth`              | Register/Login, Balance      
+| `vending-service`                                | `VendingMachine`, `Product` | Purchasing, Stock Management 
+| `payment-service`                                | `Payment`                   | Card verification            
+| `notification-service` (Not available currently) | `EventLog`, `Message`       | DLQ, retry, email, vs        
 
 ## Events & Kafka Topics
 
 | Event                      | Kafka Topic         |
 |----------------------------|---------------------|
 | `ProductPurchasedEvent`    | `product-purchased` 
-| `BalanceInsufficientEvent` | `payment-faield`    
+| `BalanceInsufficientEvent` | `payment-faield`
+| `ProductPurchasedEvent`    | `payment-faield`
+| `PurchaseRollbackEvent`    | `payment-faield`
+can be extended
 
 ## Asynchronous Messaging Strategy
 
@@ -22,9 +40,19 @@
 | Sistemler arası event bus  | Kafka    | Performans + replay + fan-out    
 | Event sourcing / analytics | Kafka    | Data lake mantığı, replay        
 
-## Outbox Pattern
-**Dispatcher**, belirli aralıklarla bu tabloyu tarar ve `status = NEW ya da FAILED` olan kayıtları **RabbitMQ**'ya gönderir.  
-Retry limiti dolunca `status = DEAD` olur. DEAD olan mesajlar DLQ'ya hemen gonderilir. Dead mesajların outbox Table'dan silinmesi 3 yolla gerçekleşebilir: Timeout'a düşer (mesela 7 gün). Cleanup Service'i tarafından. Ya da compensating event'i (varsa/mümkümse) başarıyla işlenince 
+
+## Event Recovery
+- Failed messages are retried.
+- After exceeding max retry, messages are moved to DLQ.
+- DLQ Consumer may emit a rollback/compensating event.
+
+## Dead Message Handling
+Messages in DLQ can be sent to related places by kafka for like `Auditing`, `Analytics` and `Replay` etc.
+
+Deletion of dead messages from outbox table can be done in 3 ways:
+- It falls into timeout (for example 7 days).
+- By Cleanup Service.
+- Or when rollback/compensation event (if available/possible) is successfully processed
 ### 🔄 Event Akışı
 
 ```plaintext

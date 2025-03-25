@@ -3,7 +3,7 @@ package com.vm.purchase.infrastructure.processor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vm.common.domain.event.ProductPurchasedEvent;
 import com.vm.common.domain.event.PurchaseRollbackEvent;
-import com.vm.common.infrastructure.outbox.entity.OutboxMessageEntity;
+import com.vm.purchase.infrastructure.outbox.entity.OutboxMessageEntity;
 import com.vm.purchase.infrastructure.outbox.repository.OutboxMessageRepository;
 import com.vm.purchase.infrastructure.outbox.mapper.OutboxMapper;
 import lombok.RequiredArgsConstructor;
